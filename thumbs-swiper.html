@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>coverflow</title>
+    <link href="./utils/swiper4.5.1.css" rel="stylesheet" />
+    <style>
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 650px;
+        height: 800px;
+        border-radius: 5px;
+      }
+
+      .swiper-container {
+        width: 80%;
+        height: 100%;
+      }
+
+      .swiper-container-thumbs {
+        width: 15%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: 60px;
+        overflow: hidden;
+      }
+
+      .swiper-container-thumbs .swiper-slide {
+        font-size: 20px;
+        /* background: url(../images/1.png) no-repeat center center/auto 100% #000; */
+        opacity: 0.5;
+      }
+
+      .swiper-container-thumbs .swiper-slide-thumb-active {
+        opacity: 1;
+      }
+
+      .one {
+        background-color: #34495e;
+      }
+      .two {
+        background-color: #d35400;
+      }
+      .three {
+        background-color: #16a085;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide one">Slide 1</div>
+          <div class="swiper-slide two">Slide 2</div>
+          <div class="swiper-slide three">Slide 3</div>
+        </div>
+      </div>
+      <div class="swiper-container-thumbs">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide one">Slide 1</div>
+          <div class="swiper-slide two">Slide 2</div>
+          <div class="swiper-slide three">Slide 3</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./utils/swiper4.5.1.js"></script>
+  <script>
+    let thumbsSwiper = new Swiper(".swiper-container-thumbs", {
+      direction: "vertical",
+      slidesPerView: 3,
+      spaceBetween: 20,
+      watchSlidesVisibility: true,
+    });
+    let mySwiper = new Swiper(".swiper-container", {
+      autoplay: true,
+      direction: "vertical",
+      spaceBetween: 20,
+      thumbs: {
+        swiper: thumbsSwiper,
+      },
+    });
+  </script>
+</html>
