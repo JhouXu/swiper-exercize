@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiperJS hashNavigation</title>
+    <link href="./utils/swiper4.5.1.css" rel="stylesheet" />
+    <style>
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      div.swiper-button {
+        margin: 10px 0;
+      }
+
+      div.swiper-container {
+        width: 800px;
+        height: 500px;
+      }
+      div.swiper-slide {
+        width: 100%;
+        height: 100%;
+        color: #ffffff;
+      }
+      div.swiper-slide.slide1 {
+        background-color: #16a085;
+      }
+      div.swiper-slide.slide2 {
+        background-color: #2980b9;
+      }
+      div.swiper-slide.slide3 {
+        background-color: #f1c40f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swiper-container">
+      <div class="swiper-button">
+        <a href="#slide1" target="_blank">slide1</a>
+        <a href="#slide2" target="_blank">slide2</a>
+        <a href="#slide3" target="_blank">slide3</a>
+      </div>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide slide1" data-hash="slide1">Slide 1</div>
+        <div class="swiper-slide slide2" data-hash="slide2">Slide 2</div>
+        <div class="swiper-slide slide3" data-hash="slide3">Slide 3</div>
+      </div>
+    </div>
+  </body>
+  <script src="./utils/swiper4.5.1.js"></script>
+  <script>
+    var mySwiper = new Swiper(".swiper-container", {
+      hashNavigation: true,
+    });
+  </script>
+</html>
