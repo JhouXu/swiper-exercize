@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiperJS</title>
+    <link href="./utils/swiper4.5.1.css" rel="stylesheet" />
+    <style>
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      div.swiper-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        border-radius: 5px;
+      }
+      div.swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: 60px;
+      }
+      div.one {
+        background-color: #34495e;
+      }
+      div.two {
+        background-color: #d35400;
+      }
+      div.three {
+        background-color: #16a085;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide one">Slide 1</div>
+        <div class="swiper-slide two">Slide 2</div>
+        <div class="swiper-slide three">Slide 3</div>
+      </div>
+      <!-- 分页器 -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </body>
+  <script src="./utils/swiper4.5.1.js"></script>
+  <script>
+    var mySwiper = new Swiper(".swiper-container", {
+      autoplay: true,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      centeredSlides: true, // 居中显示正在展示的slide，默认是居左对齐。
+      slidesPerView: 2, // 一次显示多少个 slide，这里因为 coverflowEffect子参数设定，设置为3的时候是不能够充满父盒子的，所以要比真正显示的盒子少才行。
+      effect: "coverflow", // 轮播效果
+      coverflowEffect: {
+        // coverflow 效果细节调整
+        rotate: 0,
+        stretch: 50,
+        depth: 350,
+      },
+    });
+  </script>
+</html>
