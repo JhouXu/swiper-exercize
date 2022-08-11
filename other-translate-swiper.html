@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>other-translate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+    <!-- Link Swiper6 v8.3.2 CSS -->
+    <link rel="stylesheet" href="./utils/swiper8.3.2.css" />
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .swiper-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        background: #fff;
+        text-align: center;
+        font-size: 10vw;
+        overflow: hidden;
+      }
+
+      .slide-inner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        text-shadow: 0 0 10px #000000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div
+            class="slide-inner"
+            style="background-image: url('https://cdn.pixabay.com/photo/2017/01/24/03/54/urban-2004494_960_720.jpg')"
+          >
+            slide-1
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div
+            class="slide-inner"
+            style="background-image: url('https://cdn.pixabay.com/photo/2018/12/09/07/36/city-3864462_960_720.jpg')"
+          >
+            slide-2
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div
+            class="slide-inner"
+            style="background-image: url('https://cdn.pixabay.com/photo/2014/06/01/09/25/paris-359503_960_720.jpg')"
+          >
+            slide-3
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <div class="swiper-button-next swiper-button-white"></div>
+      <div class="swiper-button-prev swiper-button-white"></div>
+    </div>
+
+    <!-- Swiper6 v8.3.2 JS -->
+    <script src="./utils/swiper8.3.2.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var interleaveOffset = 0.5; // 视差比值(取值范围(-infinity, +infinity))
+
+      var swiperOptions = {
+        speed: 1000, // 单页的滑动过渡消耗时间
+        grabCursor: true, // 鼠标变成手掌形状
+        watchSlidesProgress: true, // Progress（进度、进程）分为swiper的progress 和每个slide单独的progress。
+        mousewheel: true, // 鼠标控制
+        keyboard: true, // 键盘控制
+        navigation: {
+          // 前进后退按钮
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        // 事件
+        on: {
+          /* 当Swiper的progress被改变时执行. */
+          progress: function (swiper) {
+            for (var i = 0; i < swiper.slides.length; i++) {
+              var slideProgress = swiper.slides[i].progress; // slide单独的progress。
+              var innerOffset = swiper.height * interleaveOffset; // 偏移距离 = 当前滑块的宽度 * 视差值
+              var innerTranslate = slideProgress * innerOffset;
+              swiper.slides[i].querySelector(".slide-inner").style.transform =
+                "translate3d(" + innerTranslate + "px, 0,  0)";
+            }
+          },
+
+          /* 当碰触到slider时执行. */
+          touchStart: function (swiper) {
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = "";
+            }
+          },
+
+          /* 每当设置Swiper开始过渡动画时执行.开始滑动和结束滑动时触发。 */
+          setTransition: function (swiper, speed) {
+            for (var i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = speed + "ms";
+              swiper.slides[i].querySelector(".slide-inner").style.transition = speed + "ms";
+            }
+          },
+        },
+      };
+
+      new Swiper(".swiper-container", swiperOptions);
+    </script>
+  </body>
+</html>
